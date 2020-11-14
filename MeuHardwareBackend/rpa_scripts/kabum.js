@@ -32,26 +32,49 @@ var connection = mysql.createConnection({
      defaultViewport: null, 
      args: ['--start-maximized'] 
    });
+
    const page = await browser.newPage();
-   await page.goto('https://www.kabum.com.br/hardware/placa-de-video-vga?int_banner_name=placa-de-video-vga&int_banner_position=carrossel_topo_home');
+   await page.goto('https://www.kabum.com.br/hardware/placa-de-video-vga?pagina=1');
 
-   const pageHrefs = await page.evaluate(() => {
-      var link_list = [];
-      var elements = document.getElementById("listagem-produtos")
-      
-      Array.from(elements.getElementsByTagName("a")).forEach((element) => {
-         link_list.push(element.href);
+   var hrefs = [];
+   var i = 1;
+   var productsAvailable = await page.evaluate(() => {
+      return document.getElementsByClassName("sc-fznZeY jLtPVV")[0] == undefined
+   })
+
+   while ( productsAvailable ){
+      const pageHrefs = await page.evaluate(() => {
+         var link_list = [];
+         var elements = document.getElementById("listagem-produtos")
+         
+         Array.from(elements.getElementsByTagName("a")).forEach((element) => {
+            link_list.push(element.href);
+         })               
+         
+         return {
+            elements: link_list,      
+         };
+      });
+
+      var resultList = await pageHrefs
+      for(var result in resultList.elements){
+         hrefs.push(resultList.elements[result])
+      }
+
+      console.log(hrefs.length)
+
+      await page.goto('https://www.kabum.com.br/hardware/placa-de-video-vga?pagina=' + i)      
+      i++
+
+      productsAvailable = await page.evaluate(() => {
+         return document.getElementsByClassName("sc-fznZeY jLtPVV")[0] == undefined
       })
-      
-      return {
-         elements: link_list,      
-      };
-   });
+   }
 
-   var hrefs = await pageHrefs
+   console.log(hrefs)
 
-   for(var index in hrefs.elements){
-      await page.goto(hrefs.elements[index])
+   for(var index in hrefs){
+      await page.goto(hrefs[index])
       try {
          const pageValues = await page.evaluate(() => {      
 
@@ -72,7 +95,7 @@ var connection = mysql.createConnection({
             };
          });
          console.log(pageValues)
-         setConnection(pageValues, hrefs.elements[index])
+         setConnection(pageValues, hrefs[index])
       } catch (error) {
          console.log(error)
       }
