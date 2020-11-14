@@ -17,6 +17,12 @@ var connection = mysql.createConnection({
    )
  }
 
+ const listFilter = (list) => {
+   return list.sort().filter(function(item, pos, ary) {
+      return !pos || item != ary[pos - 1];
+  });
+}
+
 (async () => {
    connection.connect(function(err) {
       if (err) {
@@ -61,8 +67,6 @@ var connection = mysql.createConnection({
          hrefs.push(resultList.elements[result])
       }
 
-      console.log(hrefs.length)
-
       await page.goto('https://www.kabum.com.br/hardware/placa-de-video-vga?pagina=' + i)      
       i++
 
@@ -71,7 +75,9 @@ var connection = mysql.createConnection({
       })
    }
 
-   console.log(hrefs)
+   console.log("Antes: " + hrefs.length)
+   hrefs = await listFilter(hrefs)
+   console.log("Depois: " + hrefs.length)
 
    for(var index in hrefs){
       await page.goto(hrefs[index])
