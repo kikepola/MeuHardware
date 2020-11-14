@@ -1,2 +1,2 @@
 require('dotenv/config')
-require('./../rpa_scripts/kabum')
+require('./../rpa_scripts/pichau')
