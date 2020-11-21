@@ -35,14 +35,23 @@ class GraphicCardAdapter(private val context: Context,
 
         val productNameTextView = rowView.findViewById(R.id.product_title) as TextView
 
-        //val productPriceTextView = rowView.findViewById(R.id.product_price) as TextView
+        val productPriceTextView = rowView.findViewById(R.id.product_price) as TextView
+
+        val productStoreTextView = rowView.findViewById(R.id.product_store) as TextView
 
         val productImageView = rowView.findViewById(R.id.product_image) as ImageView
 
         val product = getItem(p0) as GraphicCard
 
-        productNameTextView.text = product.name
-        //productPriceTextView.text = product.price.toString()
+        var finalProductName = product.name
+        if(finalProductName.length > 80){
+            finalProductName = finalProductName.take(80) + "..."
+        }
+
+        productNameTextView.text = finalProductName
+
+        productPriceTextView.text = "R$ " + product.price.toString()
+        productStoreTextView.text = "Loja: " + product.storeName
 
         val picasso = Picasso.get()
         picasso.load(product.imgPath).into(productImageView)
