@@ -8,7 +8,7 @@ import com.example.meuhardwareandroid.repository.Repository
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class MainViewModel(private  val repository: Repository): ViewModel() {
+class GraphicCardViewModel(private  val repository: Repository): ViewModel() {
 
     val response: MutableLiveData<Response<Collection<GraphicCard>>> = MutableLiveData()
 

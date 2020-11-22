@@ -8,5 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="mh_text_orange">#ff6600</color>
+    <color name="mh_bkg">#14141f</color>
     <color name="mh_gray">#3D3D3D</color>
 </resources>
