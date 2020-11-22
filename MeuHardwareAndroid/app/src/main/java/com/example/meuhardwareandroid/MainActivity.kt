@@ -1,14 +1,13 @@
 package com.example.meuhardwareandroid
 
+import android.app.ActionBar
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.view.ViewGroup
 import android.widget.ListView
-import androidx.core.view.get
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.meuhardwareandroid.adapters.GraphicCardAdapter
@@ -32,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         viewModel.getGraphicCard()
         viewModel.response.observe(this, Observer { response ->
-            if(response.isSuccessful){
-               // val listItems = response.body()
+            if (response.isSuccessful) {
+                // val listItems = response.body()
 
                 var listItems = ArrayList<GraphicCard>()
                 response.body()?.forEach { graphicCard: GraphicCard -> listItems.add(graphicCard) }
@@ -41,7 +40,11 @@ class MainActivity : AppCompatActivity() {
                 val adapter = GraphicCardAdapter(this, listItems)
                 listView.adapter = adapter
 
-            }else{
+                val params: ViewGroup.LayoutParams = listView.layoutParams
+                params.height = (listItems.size * 150) + 300
+                listView.layoutParams = params
+
+            } else {
                 Log.d("Response", response.errorBody().toString())
             }
         })
