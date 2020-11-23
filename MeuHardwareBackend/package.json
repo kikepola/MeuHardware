@@ -20,7 +20,8 @@
     "mysql": "^2.18.1",
     "puppeteer": "^5.4.1",
     "selenium-webdriver": "^4.0.0-alpha.7",
-    "slugify": "^1.4.6"
+    "slugify": "^1.4.6",
+    "util": "^0.12.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
