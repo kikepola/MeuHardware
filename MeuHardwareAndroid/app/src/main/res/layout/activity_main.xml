@@ -7,20 +7,180 @@
     android:background="@color/mh_bkg"
     tools:context=".GraphicCardActivity">
 
-    <Button
-        android:id="@+id/gcBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginLeft="161dp"
-        android:layout_marginTop="341dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginRight="162dp"
-        android:layout_marginBottom="342dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="horizontal"
+        android:id="@+id/LogoArea">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginRight="72dp"
+            android:layout_marginBottom="284dp"
+            app:srcCompat="@drawable/logo" />
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="260dp"
+        android:gravity="center"
+        >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="170dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/custom_list_item"
+                    android:layout_marginRight="20dp">
+
+                    <ImageButton
+                        android:id="@+id/gpuBtn"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:maxWidth="20dp"
+                        android:maxHeight="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:paddingRight="20dp"
+                        android:scaleType="fitStart"
+                        app:srcCompat="@drawable/gpu"></ImageButton>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="50dp"
+                        android:clickable="false"
+                        android:text="Placas de Vídeo"
+                        android:textColor="@color/mh_gray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"
+                        android:textStyle="bold"></TextView>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/cpuBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/custom_list_item">
+
+                    <ImageButton
+                        android:layout_width="170dp"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:paddingLeft="40dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="50dp"
+                        android:scaleType="fitStart"
+                        app:srcCompat="@drawable/cpu"></ImageButton>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="50dp"
+                        android:clickable="false"
+                        android:text="Processador"
+                        android:textColor="@color/mh_gray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"
+                        android:textStyle="bold"></TextView>
+                </FrameLayout>
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/mbBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/custom_list_item"
+                    android:layout_marginRight="20dp">
+
+                    <ImageButton
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:paddingLeft="30dp"
+                        android:paddingTop="12dp"
+                        android:paddingRight="30dp"
+                        android:scaleType="fitStart"
+                        app:srcCompat="@drawable/mother_board"></ImageButton>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="50dp"
+                        android:clickable="false"
+                        android:text="Placas Mãe"
+                        android:textColor="@color/mh_gray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"
+                        android:textStyle="bold"></TextView>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/ramBtn"
+                    android:layout_width="170dp"
+                    android:layout_height="200dp"
+                    android:background="@drawable/custom_list_item">
+
+                    <ImageButton
+                        android:layout_width="170dp"
+                        android:layout_height="fill_parent"
+                        android:background="@null"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="30dp"
+                        android:paddingRight="30dp"
+                        android:scaleType="fitStart"
+                        app:srcCompat="@drawable/memory"></ImageButton>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="50dp"
+                        android:clickable="false"
+                        android:text="Memórias Ram"
+                        android:textColor="@color/mh_gray"
+                        android:textSize="18sp"
+                        android:textAlignment="center"
+                        android:textStyle="bold"></TextView>
+                </FrameLayout>
+            </LinearLayout>
+
+        </TableRow>
+
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
