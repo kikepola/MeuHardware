@@ -76,12 +76,12 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/cpuBtn"
                     android:layout_width="170dp"
                     android:layout_height="200dp"
                     android:background="@drawable/custom_list_item">
 
                     <ImageButton
+                        android:id="@+id/cpuBtn"
                         android:layout_width="170dp"
                         android:layout_height="fill_parent"
                         android:background="@null"

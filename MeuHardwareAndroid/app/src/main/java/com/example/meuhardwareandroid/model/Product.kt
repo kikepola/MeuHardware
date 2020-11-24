@@ -2,7 +2,7 @@ package com.example.meuhardwareandroid.model
 import com.google.gson.annotations.SerializedName
 import java.sql.Date
 
-data class GraphicCard(
+data class Product(
         val id : Int,
         val name : String,
         val price : Double,

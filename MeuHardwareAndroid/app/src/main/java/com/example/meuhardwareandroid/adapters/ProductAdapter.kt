@@ -8,12 +8,12 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.meuhardwareandroid.R
-import com.example.meuhardwareandroid.model.GraphicCard
+import com.example.meuhardwareandroid.model.Product
 import com.squareup.picasso.Picasso
 
 
-class GraphicCardAdapter(private val context: Context,
-                         private val dataSource: ArrayList<GraphicCard>) : BaseAdapter() {
+class ProductAdapter(private val context: Context,
+                     private val dataSource: ArrayList<Product>) : BaseAdapter() {
 
     private val inflater: LayoutInflater
             = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -41,7 +41,7 @@ class GraphicCardAdapter(private val context: Context,
 
         val productImageView = rowView.findViewById(R.id.product_image) as ImageView
 
-        val product = getItem(p0) as GraphicCard
+        val product = getItem(p0) as Product
 
         var finalProductName = product.name
         if(finalProductName.length > 80){

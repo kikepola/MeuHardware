@@ -20,6 +20,13 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GraphicCardActivity::class.java)
             startActivity(intent)
         }
+
+        val cpuBtn = findViewById<ImageButton>(R.id.cpuBtn)
+
+        cpuBtn.setOnClickListener {
+            val intent = Intent(this, ProcessorActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

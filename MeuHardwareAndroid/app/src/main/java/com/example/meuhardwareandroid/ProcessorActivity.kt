@@ -7,28 +7,28 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ListView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.meuhardwareandroid.adapters.ProductAdapter
 import com.example.meuhardwareandroid.model.Product
 import com.example.meuhardwareandroid.repository.Repository
-import androidx.lifecycle.Observer
 
-class GraphicCardActivity : AppCompatActivity() {
+class ProcessorActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: GraphicCardViewModel
+    private lateinit var viewModel: ProcessorViewModel
     private lateinit var listView: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_graphic_card)
+        setContentView(R.layout.activity_processor)
 
         listView = findViewById<ListView>(R.id.product_list_view)
 
         val repository = Repository()
-        val viewModelFactory = GraphicCardViewModelFactory(repository)
+        val viewModelFactory = ProcessorViewModelFactory(repository)
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(GraphicCardViewModel::class.java)
-        viewModel.getGraphicCard()
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ProcessorViewModel::class.java)
+        viewModel.getProcessor()
         viewModel.response.observe(this, Observer { response ->
             if (response.isSuccessful) {
                 // val listItems = response.body()

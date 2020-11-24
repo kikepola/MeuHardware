@@ -8,13 +8,13 @@ import com.example.meuhardwareandroid.repository.Repository
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
-class GraphicCardViewModel(private  val repository: Repository): ViewModel() {
+class ProcessorViewModel(private  val repository: Repository): ViewModel() {
 
     val response: MutableLiveData<Response<Collection<Product>>> = MutableLiveData()
 
-    fun getGraphicCard() {
+    fun getProcessor() {
         viewModelScope.launch {
-            val finalResponse: Response<Collection<Product>> = repository.getGraphicCard()
+            val finalResponse: Response<Collection<Product>> = repository.getProcessor()
             response.value = finalResponse
         }
     }
