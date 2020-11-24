@@ -5,7 +5,7 @@ exports.get = async (req, res, next) => {
     try{
         let service = new Service();
     
-        await service.getAllGraphicCard().then((promise_result) => {
+        await service.getAllMemory().then((promise_result) => {
             result = promise_result
         })
 
