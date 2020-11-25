@@ -26,6 +26,17 @@
             android:paddingTop="40dp"
             android:gravity="center_horizontal" />
 
+        <ProgressBar
+            android:id="@+id/progressBarProducts"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity = "center"
+            android:layout_centerInParent="true"
+            android:fillViewport="true"
+            android:outlineAmbientShadowColor="@color/mh_text_orange"
+            android:outlineSpotShadowColor="@color/mh_text_orange"/>
+
 
         <ListView
             android:id="@+id/product_list_view"

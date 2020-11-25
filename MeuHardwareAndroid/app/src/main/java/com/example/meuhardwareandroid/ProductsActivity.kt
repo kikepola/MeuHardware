@@ -5,8 +5,10 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.meuhardwareandroid.adapters.ProductAdapter
@@ -21,6 +23,7 @@ class ProductsActivity : AppCompatActivity() {
     private lateinit var viewModel: ProductViewModel
     private lateinit var listView: ListView
     private lateinit var productNameTxt: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,11 @@ class ProductsActivity : AppCompatActivity() {
         var option: String = intent.getStringExtra("option")
 
         listView = findViewById<ListView>(R.id.product_list_view)
+
+        progressBar = findViewById<ProgressBar>(R.id.progressBarProducts)
+        progressBar.visibility = View.VISIBLE
+
+
         productNameTxt = findViewById<TextView>(R.id.productTxt)
         productNameTxt.text = option
 
@@ -57,6 +65,8 @@ class ProductsActivity : AppCompatActivity() {
                 val params: ViewGroup.LayoutParams = listView.layoutParams
                 params.height = (listItems.size * 455)
                 listView.layoutParams = params
+
+                progressBar.visibility = View.GONE
 
             } else {
                 Log.d("Response", response.errorBody().toString())
