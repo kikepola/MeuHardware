@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mh_bkg"
-    tools:context=".GraphicCardActivity">
+    tools:context=".ProductsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="horizontal"
-        android:id="@+id/LogoArea">
+        android:id="@+id/LogoArea"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/imageView"
@@ -119,13 +120,13 @@
                 android:orientation="horizontal">
 
                 <FrameLayout
-                    android:id="@+id/mbBtn"
                     android:layout_width="170dp"
                     android:layout_height="200dp"
                     android:background="@drawable/custom_list_item"
                     android:layout_marginRight="20dp">
 
                     <ImageButton
+                        android:id="@+id/mbBtn"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -149,12 +150,12 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/ramBtn"
                     android:layout_width="170dp"
                     android:layout_height="200dp"
                     android:background="@drawable/custom_list_item">
 
                     <ImageButton
+                        android:id="@+id/ramBtn"
                         android:layout_width="170dp"
                         android:layout_height="fill_parent"
                         android:background="@null"
@@ -171,9 +172,9 @@
                         android:layout_marginTop="50dp"
                         android:clickable="false"
                         android:text="Memórias Ram"
+                        android:textAlignment="center"
                         android:textColor="@color/mh_gray"
                         android:textSize="18sp"
-                        android:textAlignment="center"
                         android:textStyle="bold"></TextView>
                 </FrameLayout>
             </LinearLayout>

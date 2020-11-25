@@ -7,28 +7,43 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.meuhardwareandroid.adapters.ProductAdapter
 import com.example.meuhardwareandroid.model.Product
 import com.example.meuhardwareandroid.repository.Repository
 import androidx.lifecycle.Observer
+import com.example.meuhardwareandroid.viewmodelfactorys.ProductViewModelFactory
+import com.example.meuhardwareandroid.viewmodels.ProductViewModel
 
-class GraphicCardActivity : AppCompatActivity() {
+class ProductsActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: GraphicCardViewModel
+    private lateinit var viewModel: ProductViewModel
     private lateinit var listView: ListView
+    private lateinit var productNameTxt: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_graphic_card)
+        setContentView(R.layout.activity_products)
+
+        var option: String = intent.getStringExtra("option")
 
         listView = findViewById<ListView>(R.id.product_list_view)
+        productNameTxt = findViewById<TextView>(R.id.productTxt)
+        productNameTxt.text = option
 
         val repository = Repository()
-        val viewModelFactory = GraphicCardViewModelFactory(repository)
+        val viewModelFactory = ProductViewModelFactory(repository)
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(GraphicCardViewModel::class.java)
-        viewModel.getGraphicCard()
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ProductViewModel::class.java)
+
+        when(option){
+            "Placas de Vídeo" -> viewModel.getGraphicCard()
+            "Memórias Ram" -> viewModel.getMemory()
+            "Placas Mãe" -> viewModel.getMotherBoard()
+            "Processador" -> viewModel.getProcessor()
+        }
+
         viewModel.response.observe(this, Observer { response ->
             if (response.isSuccessful) {
                 // val listItems = response.body()
@@ -40,7 +55,7 @@ class GraphicCardActivity : AppCompatActivity() {
                 listView.adapter = adapter
 
                 val params: ViewGroup.LayoutParams = listView.layoutParams
-                params.height = (listItems.size * 150) + 300
+                params.height = (listItems.size * 455)
                 listView.layoutParams = params
 
             } else {

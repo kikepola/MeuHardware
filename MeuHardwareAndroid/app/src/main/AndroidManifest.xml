@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProcessorActivity"></activity>
-        <activity android:name=".GraphicCardActivity" />
+        <activity android:name=".MemoryActivity"></activity>
+        <activity android:name=".MotherBoardActivity" />
+        <activity android:name=".ProcessorActivity" />
+        <activity android:name=".ProductsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

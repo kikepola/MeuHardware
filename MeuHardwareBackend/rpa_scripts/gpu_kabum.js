@@ -8,6 +8,8 @@ var connection = mysql.createConnection({
    port     : process.env.RDS_PORT,
    database : process.env.RDS_DATABASE
  });
+ 
+console.log(process.env.RDS_HOSTNAME)
 
 const setConnection = (data, href, id_data) => {
    connection.query(
