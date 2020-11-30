@@ -26,16 +26,38 @@
             android:paddingTop="40dp"
             android:gravity="center_horizontal" />
 
+        <LinearLayout
+            android:id="@+id/filtersArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/productTxt"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ordenar por:"
+                android:textColor="@color/mh_text_orange"
+                android:textSize="8pt"
+                android:textStyle="bold"/>
+
+            <Spinner
+                android:id="@+id/orderBySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/custom_spinner"/>
+
+        </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progressBarProducts"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity = "center"
-            android:layout_centerInParent="true"
-            android:fillViewport="true"
-            android:outlineAmbientShadowColor="@color/mh_text_orange"
-            android:outlineSpotShadowColor="@color/mh_text_orange"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="300dp"/>
 
 
         <ListView
@@ -48,7 +70,7 @@
             android:divider="#14141f"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_below="@+id/productTxt"/>
+            android:layout_below="@+id/filtersArea"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -58,6 +80,7 @@
             <!-- Your another layout in scroll view -->
 
         </RelativeLayout>
+
     </RelativeLayout>
 
 </ScrollView>

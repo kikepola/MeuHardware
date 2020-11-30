@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MeuHardwareAndroid</string>
+
+    <string-array name="orderByItems">
+        <item>Preço decrescente</item>
+        <item>Preço crescente</item>
+        <item>Loja</item>
+    </string-array>
+
 </resources>
