@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --mh_orange: #ff6600;
+  --mh_bkg:#14141f;
+  --mh_gray: #3D3D3D;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+
+  background-color: var(--mh_bkg);
+}
+

@@ -1,0 +1,48 @@
+#Navbar{
+  display: grid;
+  width: 100%;
+  padding: 20px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.808), rgba(0, 0, 0, 0));
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.mh-logo{
+  width: 150px;
+}
+
+.product-nav-option{
+  padding-top: 20px;
+}
+
+.product-nav-option > a{
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.555);
+  padding: 20px;
+  font-weight: 700;
+  font-family: Lato;
+  font-size: 15pt;
+  transition: all 0.3s;
+}
+
+.product-nav-option > a:hover{
+  color: rgba(255, 255, 255, 0.952);
+  font-size: 18pt;
+}
+
+.github-logo{
+  cursor: pointer;
+  margin-left: 80%;
+  width: 50px;
+
+  -webkit-filter: invert(50%); /* Safari/Chrome */
+  filter: invert(50%);
+
+  transition: all 0.3s;
+}
+
+.github-logo:hover{
+  width: 55px;
+
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+  filter: invert(100%);
+}

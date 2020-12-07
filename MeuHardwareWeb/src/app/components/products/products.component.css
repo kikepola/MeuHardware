@@ -1,0 +1,52 @@
+#Product{
+  cursor: pointer;
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+
+  width: 300px;
+  height: 400px;
+
+  margin: 30px;
+
+  border: double 6px transparent;
+  border-radius: 50px;
+
+  background-image: linear-gradient(rgb(200, 200, 200), white), radial-gradient(circle at top left, var(--mh_orange), var(--mh_gray));
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  transition: all 0.3s;
+
+}
+
+#Product:hover{
+  width: 350px;
+  height: 450px;
+  margin-top: -20px;
+
+  background-image: linear-gradient(rgb(211, 211, 211), white), radial-gradient(circle at top left, var(--mh_orange), var(--mh_gray));
+}
+
+.product-option-image-area{
+
+}
+
+.product-option-image{
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 20%;
+}
+
+.product-option-name-area{
+  text-align: center;
+
+  font-weight: 800;
+  font-family: Lato;
+  color: var(--mh_gray);
+  font-size: 18pt;
+
+  transition: all 0.3s;
+}
+
+#Product:hover .product-option-name-area{
+  font-size: 28pt;
+}
