@@ -11,22 +11,26 @@ export class ProductsAreaComponent{
     {
       productId: 1,
       productName: "Processador",
-      imgPath: "../../../assets/cpu.png"
+      imgPath: "../../../assets/cpu.png",
+      route: "/cpu"
     },
     {
       productId: 2,
       productName: "Placa de Vídeo",
-      imgPath: "../../../assets/gpu.png"
+      imgPath: "../../../assets/gpu.png",
+      route: "/graphiccard"
     },
     {
       productId: 3,
       productName: "Placa Mãe",
-      imgPath: "../../../assets/mother_board.png"
+      imgPath: "../../../assets/mother_board.png",
+      route: "/motherboard"
     },
     {
       productId: 4,
       productName: "Memórias Ram",
-      imgPath: "../../../assets/memory.png"
+      imgPath: "../../../assets/memory.png",
+      route: "/memory"
     }
   ];
 

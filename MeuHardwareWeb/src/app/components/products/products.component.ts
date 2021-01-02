@@ -10,6 +10,7 @@ export class ProductsComponent{
 
   @Input() productName: string | undefined;
   @Input() imgPath: string | undefined;
+  @Input() route: string | undefined;
 
   constructor() { }
 

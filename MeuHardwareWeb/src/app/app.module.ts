@@ -6,6 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductsAreaComponent } from './components/products-area/products-area.component';
+import { AppComponent } from './app.component';
 
 
 @NgModule({
@@ -14,13 +15,14 @@ import { ProductsAreaComponent } from './components/products-area/products-area.
     NavbarComponent,
     CarouselComponent,
     ProductsComponent,
-    ProductsAreaComponent
-  ],
+    ProductsAreaComponent,
+    AppComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [HomeComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
