@@ -1,5 +1,9 @@
 <div id="GraphicCardPage">
-  <p>
-    graphiccard works!
-  </p>
+  <app-products-card *ngFor='let product of products'
+    [img_path]="product.img_path"
+    [link]="product.link"
+    [name]="product.name.toUpperCase()"
+    [price]="product.price"
+    [store_name]="product.store_name"
+  ></app-products-card>
 </div>

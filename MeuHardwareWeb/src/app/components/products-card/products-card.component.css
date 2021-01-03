@@ -1,0 +1,47 @@
+#ProductsCard{
+  cursor: pointer;
+
+  height: 150px;
+  width: 100%;
+
+  margin-top: 30px;
+
+  border: double 6px transparent;
+  border-radius: 20px;
+
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, var(--mh_orange), var(--mh_gray));
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  transition: all 0.6s;
+}
+
+#ProductsCard:hover{
+  height: 170px;
+
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, var(--mh_gray), var(--mh_orange));
+}
+
+.ProductsCardImage{
+  width: 8%;
+  object-fit: cover;
+
+  margin-top: 1%;
+  margin-left: 10px;
+  margin-bottom: 5px;
+
+  float: left;
+}
+
+.ProductsCardInfo{
+  width: 90%;
+  height: 100%;
+  margin-left: 10%;
+}
+
+.ProductName{
+  text-align: center;
+  padding-top: 30px;
+  height: 50%;
+
+  font-weight: bold;
+}
