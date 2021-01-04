@@ -3,11 +3,18 @@
   width: 100%;
   padding: 20px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.808), rgba(0, 0, 0, 0));
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
 }
 
 .mh-logo{
   width: 150px;
+  cursor: pointer;
+}
+
+
+.NavMenuArea{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .product-nav-option{
@@ -21,6 +28,7 @@
   font-weight: 700;
   font-family: Lato;
   font-size: 15pt;
+  text-decoration: none;
   transition: all 0.3s;
 }
 
@@ -45,4 +53,57 @@
 
   -webkit-filter: invert(100%); /* Safari/Chrome */
   filter: invert(100%);
+}
+
+.NavMenuSandwich{
+  display: none;
+}
+
+@media only screen and (max-width: 1350px) {
+  .NavMenuArea {
+    display: none;
+  }
+
+  .NavMenuSandwich{
+    display: block;
+  }
+}
+
+#DropDownMenu{
+  z-index: 1;
+  position: absolute;
+  left: calc(94% - 150px);
+  top: 80px;
+
+  width: 150px;
+  height: 150px;
+
+  border-radius: 30px;
+
+  background-color: #020203;
+}
+
+.product-dropdown-opts{
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.product-dropdown-opts > a{
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.555);
+
+  font-weight: 700;
+  font-family: Lato;
+  font-size: 15pt;
+
+  padding: 2px;
+  text-decoration: none;
+}
+
+.product-dropdown-opts > a:hover{
+  color: rgba(255, 255, 255, 0.863);
+  font-size: 18pt;
 }

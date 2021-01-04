@@ -12,7 +12,7 @@ export class ProductsAreaComponent{
       productId: 1,
       productName: "Processador",
       imgPath: "../../../assets/cpu.png",
-      route: "/cpu"
+      route: "/processor"
     },
     {
       productId: 2,

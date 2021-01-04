@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 //Pages
 import { HomeComponent } from './pages/home/home.component';
-import { GraphiccardComponent } from './pages/graphiccard/graphiccard.component';
+import { ProductsPageComponent } from './pages/products-page/products-page.component';
 //Components
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
@@ -19,7 +19,7 @@ import { ProductsCardComponent } from './components/products-card/products-card.
 @NgModule({
   declarations: [
     HomeComponent,
-    GraphiccardComponent,
+    ProductsPageComponent,
     NavbarComponent,
     CarouselComponent,
     ProductsComponent,
@@ -31,7 +31,7 @@ import { ProductsCardComponent } from './components/products-card/products-card.
     BrowserModule,
     CommonModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

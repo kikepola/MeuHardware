@@ -1,17 +1,31 @@
 <div id="Navbar">
-  <div class="logo-area">
+  <div class="logo-area" routerLink="/home">
     <img src="../../../assets/logo.png" alt="logo" class="mh-logo">
   </div>
-  <div class="product-nav-option">
-    <a>CPU</a>
-    <a>GPU</a>
-    <a>Placas Mãe</a>
-    <a>Memórias</a>
-  </div>
+  <div class="NavMenuArea">
+    <div class="product-nav-option">
+      <a routerLink="/processor">CPU</a>
+      <a routerLink="/graphiccard">GPU</a>
+      <a routerLink="/motherboard">Placas Mãe</a>
+      <a routerLink="/memory">Memórias</a>
+    </div>
 
-  <div class="social-networks">
-    <a href="https://github.com/kikepola/MeuHardware">
-      <img src="../../../assets/github.png" alt="github" class="github-logo">
-    </a>
+    <div class="social-networks">
+      <a href="https://github.com/kikepola/MeuHardware">
+        <img src="../../../assets/github.png" alt="github" class="github-logo">
+      </a>
+    </div>
+  </div>
+  <div class="NavMenuSandwich">
+    <img src="../../../assets/drop_down_menu_icon.png" alt="logo" class="github-logo" (click)="abrirDropDownMenu()">
+  </div>
+</div>
+
+<div id="DropDownMenu" [hidden]="!isMenuHide">
+  <div class="product-dropdown-opts">
+    <a routerLink="/processor">CPU</a>
+    <a routerLink="/graphiccard">GPU</a>
+    <a routerLink="/motherboard">Placas Mãe</a>
+    <a routerLink="/memory">Memórias</a>
   </div>
 </div>

@@ -33,6 +33,11 @@ export class ProductsCardComponent implements OnInit {
     }
   }
 
+  openProductLink(){
+    console.log("Teste");
+    window.open(this.link, "_blank");
+  }
+
   constructor() {
     this.getScreenSize();
   }
