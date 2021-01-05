@@ -18,7 +18,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
   getProducts(){
-    this.http.get('http://52.87.191.191:8080' + this.router.url)
+    this.http.get('https://meuhardware-backend.herokuapp.com' + this.router.url)
     .subscribe(response => {
       this.products = response;
       console.log(this.products);
