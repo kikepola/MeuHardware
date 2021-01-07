@@ -37,3 +37,19 @@
   width: 100%;
   object-fit: cover;
 }
+
+@media only screen and (max-width: 900px) {
+  .carousel-images-area > img{
+    height: 70vw;
+  }
+
+  .carousel-text-area{
+    height: 70vw;
+    padding: 20px;
+  }
+
+  .carousel-text-area > h1{
+    font-size: 8vw;
+    line-height: 9vw;
+  }
+}

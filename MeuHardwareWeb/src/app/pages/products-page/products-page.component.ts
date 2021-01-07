@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class ProductsPageComponent implements OnInit {
 
   products: any;
+  isLoading: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -18,10 +19,11 @@ export class ProductsPageComponent implements OnInit {
   }
 
   getProducts(){
+    this.isLoading = true;
     this.http.get('https://meuhardware-backend.herokuapp.com' + this.router.url)
     .subscribe(response => {
       this.products = response;
-      console.log(this.products);
+      this.isLoading = false;
     }, error => {
       console.log(error);
     });
