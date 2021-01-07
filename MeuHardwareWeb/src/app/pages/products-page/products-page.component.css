@@ -3,3 +3,17 @@
   margin-left: 5%;
   margin-right: 5%;
 }
+
+.orderBy{
+  background-color: transparent;
+
+  border: solid 5px var(--mh_gray);
+  border-radius: 20px;
+
+  font-size: 12pt;
+  font-weight: 800;
+  color: var(--mh_gray);
+
+  margin-top: 20px;
+  padding: 5px;
+}

@@ -67,13 +67,19 @@
 
 @media only screen and (max-width: 700px) {
   #ProductsCard{
-    cursor: pointer;
-
-    height: 180px;
+    height: 190px;
     width: 100%;
   }
 
   .ProductName{
     height: 70%;
+  }
+
+  .ProductPrice{
+    font-size: 14pt;
+  }
+
+  .ProductContent{
+    grid-template-columns: 1fr 2fr;
   }
 }
