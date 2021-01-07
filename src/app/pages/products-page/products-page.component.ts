@@ -43,7 +43,7 @@ export class ProductsPageComponent implements OnInit {
   }
 
 
-  orderBy(option: number){
+  orderBy(option: any){
     this.products = this.result.sort((product1:any, product2:any) => {
         var referenceNumber: number = 0;
 
@@ -53,7 +53,7 @@ export class ProductsPageComponent implements OnInit {
           referenceNumber =  -1;
         }
 
-        if(option == 0){
+        if(option.target.value == 0){
           referenceNumber = referenceNumber * -1
         }
 

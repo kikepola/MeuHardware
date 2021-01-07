@@ -4,7 +4,7 @@
 
   <select name="orderBy" class="orderBy"
   *ngIf="!isLoading"
-  (change)="orderBy($event.target.value)">
+  (change)="orderBy($event)">
     <option disabled selected>
       Ordenar Por
     </option>
