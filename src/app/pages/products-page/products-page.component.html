@@ -1,4 +1,5 @@
 <div id="GraphicCardPage">
+  <app-loader *ngIf="isLoading"></app-loader>
   <app-products-card *ngFor='let product of products'
     [img_path]="product.img_path"
     [link]="product.link"

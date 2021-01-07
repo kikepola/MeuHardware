@@ -13,7 +13,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductsAreaComponent } from './components/products-area/products-area.component';
 import { ProductsCardComponent } from './components/products-card/products-card.component';
-
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { ProductsCardComponent } from './components/products-card/products-card.
     ProductsComponent,
     ProductsAreaComponent,
     ProductsCardComponent,
-    AppComponent
+    AppComponent,
+    LoaderComponent
    ],
   imports: [
     BrowserModule,
