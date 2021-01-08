@@ -43,8 +43,8 @@ export class ProductsPageComponent implements OnInit {
   }
 
 
-  orderBy(option: number){
-    this.products = this.result.sort((product1:any, product2:any) => {
+  orderBy(option: any){
+    this.products = this.products.sort((product1:any, product2:any) => {
         var referenceNumber: number = 0;
 
         if(product1.price > product2.price){
@@ -53,13 +53,27 @@ export class ProductsPageComponent implements OnInit {
           referenceNumber =  -1;
         }
 
-        if(option == 0){
+        if(option.target.value == 0){
           referenceNumber = referenceNumber * -1
         }
 
         return referenceNumber;
       }
     )
+  }
+
+  filterBy(textfild: any){
+    var searchText: String = textfild.target.value;
+
+    if(searchText.length > 0){
+      this.products = this.result.filter(
+        (product:any) => {
+          return product.name.toUpperCase().includes(searchText.toUpperCase())
+        }
+      );
+    }else{
+      this.products = this.result;
+    }
   }
 
 }
