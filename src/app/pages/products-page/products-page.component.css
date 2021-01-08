@@ -2,9 +2,15 @@
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
+  margin-bottom: 5%;
 }
 
-.orderBy{
+.filtersArea{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter{
   background-color: transparent;
 
   border: solid 5px var(--mh_gray);
@@ -14,6 +20,43 @@
   font-weight: 800;
   color: var(--mh_gray);
 
-  margin-top: 20px;
+  margin-top: 30px;
+}
+
+.filter.orderBy{
+  max-width: 38%;
   padding: 5px;
+}
+
+.filter.textfield{
+  width: 60%;
+  margin-left: 2%;
+}
+
+.filter.textfield > img{
+  width: 25px;
+  height: 25px;
+
+  margin: 5px;
+
+  object-fit: cover;
+  float: left;
+
+
+  filter: invert(48%) sepia(13%);
+}
+
+.filter.textfield > input{
+  width: calc(100% - 50px);
+  height: 100%;
+
+  margin-left: 10px;
+  background-color: transparent;
+
+  font-size: 14pt;
+  font-weight: 800;
+  color: var(--mh_gray);
+
+  outline: none !important;
+  border: none;
 }

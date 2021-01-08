@@ -2,17 +2,25 @@
 
   <app-loader *ngIf="isLoading"></app-loader>
 
-  <select name="orderBy" class="orderBy"
-  *ngIf="!isLoading"
-  (change)="orderBy($event)">
-    <option disabled selected>
-      Ordenar Por
-    </option>
-    <option *ngFor='let filter of filters'
-    value={{filter.option}} >
-      {{filter.text}}
-    </option>
-  </select>
+  <div *ngIf="!isLoading" class="filtersArea">
+
+    <select name="orderBy" class="filter orderBy"
+    (change)="orderBy($event)">
+      <option disabled selected>
+        Ordenar Por
+      </option>
+      <option *ngFor='let filter of filters'
+      value={{filter.option}} >
+        {{filter.text}}
+      </option>
+    </select>
+
+    <div class="filter textfield">
+      <img src="../../../assets/search.png"/>
+      <input type="text" (keyup)="filterBy($event)"/>
+    </div>
+
+  </div>
 
   <app-products-card *ngFor='let product of products'
     [img_path]="product.img_path"

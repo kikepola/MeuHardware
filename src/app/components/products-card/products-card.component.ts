@@ -25,7 +25,6 @@ export class ProductsCardComponent implements OnInit {
 
   resizeNameText(){
     let textNum: number = this.scrWidth/10
-    console.log(textNum);
     if(this.name && this.name.length > textNum){
       this.resizedText = this.name.slice(0,textNum) + " ...";
     }else{
@@ -34,7 +33,6 @@ export class ProductsCardComponent implements OnInit {
   }
 
   openProductLink(){
-    console.log("Teste");
     window.open(this.link, "_blank");
   }
 
