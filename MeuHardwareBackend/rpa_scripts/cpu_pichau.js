@@ -20,7 +20,7 @@ const setConnection = (data, href, id_data) => {
 
 const getIdData = () => {
    return new Promise((resolve, reject) => {
-      connection.query("Select Max(id_data) as id_data from Processor where store_name like 'Pichau'",
+      connection.query("Select IFNULL(Max(id_data), 0) as id_data from Processor where store_name like 'Pichau'",
        (err, res) => {
        err ? reject(err) : resolve(res)
      })
@@ -109,7 +109,7 @@ const listFilter = (list) => {
             price = price.replace(",", ".")
    
             return {
-               name: document.getElementsByClassName("product title")[0].getElementsByTagName("h1")[0].innerText, 
+               name: document.getElementsByClassName("product title")[0].getElementsByTagName("h1")[0].innerText.replace(",", ""), 
                image: document.getElementsByClassName("fotorama__img")[0].src,
                price: price               
             };

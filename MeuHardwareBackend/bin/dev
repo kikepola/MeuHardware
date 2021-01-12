@@ -1,14 +1,18 @@
 require('dotenv/config')
 
-require('./../rpa_scripts/gpu_kabum')
-require('./../rpa_scripts/gpu_pichau')
+//require('./../rpa_scripts/gpu_kabum')
+//require('./../rpa_scripts/gpu_pichau')
+//require('./../rpa_scripts/gpu_terabyte')
 
-require('./../rpa_scripts/cpu_kabum')
-require('./../rpa_scripts/cpu_pichau')
+//require('./../rpa_scripts/cpu_kabum')
+//require('./../rpa_scripts/cpu_pichau')
+//require('./../rpa_scripts/cpu_terabyte')
 
-require('./../rpa_scripts/mb_kabum')
-require('./../rpa_scripts/mb_pichau')
+//require('./../rpa_scripts/mb_kabum')
+//require('./../rpa_scripts/mb_pichau')
+//require('./../rpa_scripts/mb_terabyte')
 
 require('./../rpa_scripts/memory_kabum')
 require('./../rpa_scripts/memory_pichau')
+require('./../rpa_scripts/memory_terabyte')
 

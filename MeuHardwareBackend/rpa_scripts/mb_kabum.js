@@ -20,7 +20,7 @@ const setConnection = (data, href, id_data) => {
 
 const getIdData = () => {
    return new Promise((resolve, reject) => {
-      connection.query("Select Max(id_data) as id_data from MotherBoard where store_name like 'Kabum'",
+      connection.query("Select IFNULL(Max(id_data), 0) as id_data from MotherBoard where store_name like 'Kabum'",
        (err, res) => {
        err ? reject(err) : resolve(res)
      })
@@ -112,7 +112,7 @@ const listFilter = (list) => {
             price = price.replace(",", ".")
 
             return {
-               name: document.getElementsByClassName("titulo_det")[0].innerText, 
+               name: document.getElementsByClassName("titulo_det")[0].innerText.replace(",", ""), 
                image: document.getElementsByClassName("imagem_produto_descricao")[0].src,
                price: price.replace("R$", "")                 
             };
