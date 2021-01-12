@@ -1,14 +1,27 @@
+const Kabum = require('../rpa_scripts/kabum');
+const Pichau = require('../rpa_scripts/pichau');
+
 require('dotenv/config')
 
-require('./../rpa_scripts/gpu_kabum')
-require('./../rpa_scripts/gpu_pichau')
+require('./../rpa_scripts/kabum');
+require('./../rpa_scripts/pichau');
 
-require('./../rpa_scripts/cpu_kabum')
-require('./../rpa_scripts/cpu_pichau')
+const kabum = new Kabum();
+kabum.run('https://www.kabum.com.br/hardware/processadores')
 
-require('./../rpa_scripts/mb_kabum')
-require('./../rpa_scripts/mb_pichau')
+const pichau = new Pichau()
+pichau.run('https://www.pichau.com.br/hardware/placa-m-e') 
 
-require('./../rpa_scripts/memory_kabum')
-require('./../rpa_scripts/memory_pichau')
+
+//require('./../rpa_scripts/gpu_kabum')
+//require('./../rpa_scripts/gpu_pichau')
+
+//require('./../rpa_scripts/cpu_kabum')
+//require('./../rpa_scripts/cpu_pichau')
+
+//require('./../rpa_scripts/mb_kabum')
+//require('./../rpa_scripts/mb_pichau')
+
+//require('./../rpa_scripts/memory_kabum')
+//require('./../rpa_scripts/memory_pichau')
 

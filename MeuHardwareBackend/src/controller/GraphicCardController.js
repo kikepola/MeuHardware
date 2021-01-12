@@ -14,3 +14,7 @@ exports.get = async (req, res, next) => {
         res.status(500).send({ message: err});
     }
 };
+
+exports.post = async (req, res, next) => {
+    console.log(req.body)
+};
