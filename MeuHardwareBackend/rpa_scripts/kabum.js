@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fetch = require("node-fetch");
 
 module.exports = class Kabum{
 
@@ -8,7 +9,7 @@ module.exports = class Kabum{
       });
    }
 
-   async run(link, apiLink){
+   async run(storeUrl, productUrl, id_data){
 
       const browser = await puppeteer.launch({
       headless: false,
@@ -17,7 +18,7 @@ module.exports = class Kabum{
       });
 
       const page = await browser.newPage();
-      await page.goto(link + '?pagina=1');
+      await page.goto(storeUrl + '?pagina=1');
 
       var hrefs = [];
       var i = 1;
@@ -44,7 +45,7 @@ module.exports = class Kabum{
             hrefs.push(resultList.elements[result])
          }
 
-         await page.goto(link + '?pagina=' + i)      
+         await page.goto(storeUrl + '?pagina=' + i)      
          i++
 
          productsAvailable = await page.evaluate(() => {
@@ -77,14 +78,7 @@ module.exports = class Kabum{
                   image: document.getElementsByClassName("imagem_produto_descricao")[0].src,
                   price: price.replace("R$", "")                 
                };
-            });  
-            var id_data = 0
-            await fetch('http://localhost:8080/id').then(function(response) {
-               console.log (response.json())
-               id_data = response.json()
             });
-            
-            console.log(id_data)  
 
             var productData = {
                id_data: id_data,
@@ -95,7 +89,7 @@ module.exports = class Kabum{
                store_name: "Kabum",
             }
 
-            await fetch(apiLink, {
+            await fetch(productUrl, {
                method: 'POST',
                headers: {
                  'Accept': 'application/json',

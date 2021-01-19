@@ -96,8 +96,7 @@ export class Service {
             db.openConnection();
             
             var result = await db.execute(
-                `Select Max(id_data) as id_data from GraphicCard `
-                +`where store_name like 'Kabum'`
+                `Select Max(id_data) + 1 as id_data from GraphicCard`
             );
 
             db.closeConnection();      
@@ -113,7 +112,7 @@ export class Service {
             let db = new DBConnection();
             db.openConnection();
 
-            productTableName = ""
+            var productTableName = ""
             switch (productCode) {
                 case 0:
                     productTableName = "GraphicCard"
@@ -130,7 +129,7 @@ export class Service {
                 default:
                     break;
             }
-            
+
             var result = await db.execute(
                 `INSERT INTO ` + productTableName
                 +`  (id_data, name,`
@@ -138,9 +137,9 @@ export class Service {
                 +`    link, execution_date,`
                 +`    store_name) `
                 +`VALUES `
-                +`('${memory.id_data}', '${memory.name}',`
-                +` '${memory.price}', '${memory.image}', `
-                +` '${memory.link}', NOW(), '${memory.store_name}')`
+                +`('${product.id_data}', '${product.name}',`
+                +` '${product.price}', '${product.image}', `
+                +` '${product.link}', NOW(), '${product.store_name}')`
             );
 
             db.closeConnection();      

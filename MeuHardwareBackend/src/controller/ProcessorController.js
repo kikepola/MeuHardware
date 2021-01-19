@@ -18,11 +18,10 @@ exports.get = async (req, res, next) => {
 exports.post = async (req, res, next) => {
 
     let service = new Service();
-    
+
     await service.insertProduct(req.body, 1).then(() => {
         res.status(200).send(result);
     }).catch((error) => {
         res.status(500).send({ message: error});
     })
-        
 };

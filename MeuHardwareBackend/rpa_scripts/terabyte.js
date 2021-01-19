@@ -1,8 +1,9 @@
 const puppeteer = require('puppeteer');
+const fetch = require("node-fetch");
 
 module.exports = class Terabyte{
 
-   async run(link){
+   async run(storeUrl, productUrl, id_data){
 
       const browser = await puppeteer.launch({
          headless: false,
@@ -11,7 +12,7 @@ module.exports = class Terabyte{
       });
     
       const page = await browser.newPage();
-      await page.goto(link);
+      await page.goto(storeUrl);
     
       var products = await page.evaluate(() => {
          var productsList = []
@@ -28,11 +29,11 @@ module.exports = class Terabyte{
                price = price.replace(" ", "")
     
                productsList.push(
-                  {               
+                  {              
                      name: element.getElementsByTagName("a")[0].title.replace(",", ""), 
                      image: element.getElementsByTagName("img")[0].src,
                      price: price,
-                     href: element.getElementsByTagName("a")[0].href             
+                     link: element.getElementsByTagName("a")[0].href                           
                   }
                )
             }        
@@ -42,8 +43,27 @@ module.exports = class Terabyte{
        
       var result = await products
     
-      result.forEach((product) => {
-        //setConnection(product, id_data)
+      result.forEach(async (product) => {
+
+         var productData = {
+            id_data: id_data,
+            name: product.name,
+            image: product.image,
+            price: product.price,
+            link: product.link,
+            store_name: "Terabyte"
+         }
+         console.log(productData)
+
+         await fetch(productUrl, {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productData)
+         }).then(() => console.log("OK!"))
+         .catch((error) => console.log(error))
       });
     
       await browser.close();    
