@@ -2,7 +2,13 @@ const puppeteer = require('puppeteer');
 
 module.exports = class Kabum{
 
-   async run(link){
+   listFilter(list){
+      return list.sort().filter(function(item, pos, ary) {
+         return !pos || item != ary[pos - 1];
+      });
+   }
+
+   async run(link, apiLink){
 
       const browser = await puppeteer.launch({
       headless: false,
@@ -47,10 +53,11 @@ module.exports = class Kabum{
       }
 
       console.log("Antes: " + hrefs.length)
-      hrefs = await listFilter(hrefs)
+      hrefs = await this.listFilter(hrefs)
       console.log("Depois: " + hrefs.length)
 
       for(var index in hrefs){
+         console.log(hrefs[index])
          await page.goto(hrefs[index])
          try {
             const pageValues = await page.evaluate(() => {      
@@ -70,16 +77,40 @@ module.exports = class Kabum{
                   image: document.getElementsByClassName("imagem_produto_descricao")[0].src,
                   price: price.replace("R$", "")                 
                };
+            });  
+            var id_data = 0
+            await fetch('http://localhost:8080/id').then(function(response) {
+               console.log (response.json())
+               id_data = response.json()
             });
-            console.log(pageValues)
-            //setConnection(pageValues, hrefs[index], id_data)
+            
+            console.log(id_data)  
+
+            var productData = {
+               id_data: id_data,
+               name: pageValues.name,
+               image: pageValues.image,
+               price: pageValues.price,
+               link: hrefs[index],
+               store_name: "Kabum",
+            }
+
+            await fetch(apiLink, {
+               method: 'POST',
+               headers: {
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+               },
+               body: JSON.stringify(productData)
+            }).then(() => console.log("OK!"))
+            .catch((error) => console.log(error))
+
          } catch (error) {
             console.log(error)
          }
          
       }
       
-   await browser.close();
-   connection.end();
+      await browser.close();
    }
 }

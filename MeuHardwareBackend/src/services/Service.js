@@ -24,31 +24,6 @@ export class Service {
         }
     }
 
-    async insertGraphicCard(graphiccard){
-        try {
-            let db = new DBConnection();
-            db.openConnection();
-            
-            var result = await db.execute(
-                `INSERT INTO GraphicCard`
-                +`  (id_data, name,`
-                +`   price, img_path,`
-                +`    link, execution_date,`
-                +`    store_name) `
-                +`VALUES `
-                +`('${graphiccard.id_data}', '${graphiccard.name}',`
-                +` '${graphiccard.price}', '${graphiccard.image}', `
-                +` '${graphiccard.link}', NOW(), '${graphiccard.store_name}')`
-            );
-
-            db.closeConnection();      
-
-            return result;            
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     async getAllMotherBoard(){
         try {
             let db = new DBConnection();
@@ -61,31 +36,6 @@ export class Service {
                 +'     (SELECT MAX(id_data) AS max'
                 +'     FROM MotherBoard) maxVal '
                 +' ON gc.id_data = maxVal.max '
-            );
-
-            db.closeConnection();      
-
-            return result;            
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    async insertMotherBoard(motherboard){
-        try {
-            let db = new DBConnection();
-            db.openConnection();
-            
-            var result = await db.execute(
-                `INSERT INTO MotherBoard`
-                +`  (id_data, name,`
-                +`   price, img_path,`
-                +`    link, execution_date,`
-                +`    store_name) `
-                +`VALUES `
-                +`('${motherboard.id_data}', '${motherboard.name}',`
-                +` '${motherboard.price}', '${motherboard.image}', `
-                +` '${motherboard.link}', NOW(), '${motherboard.store_name}')`
             );
 
             db.closeConnection();      
@@ -116,32 +66,7 @@ export class Service {
         } catch (error) {
             console.log(error)
         }
-    }
-
-    async insertMemory(memory){
-        try {
-            let db = new DBConnection();
-            db.openConnection();
-            
-            var result = await db.execute(
-                `INSERT INTO Memory`
-                +`  (id_data, name,`
-                +`   price, img_path,`
-                +`    link, execution_date,`
-                +`    store_name) `
-                +`VALUES `
-                +`('${memory.id_data}', '${memory.name}',`
-                +` '${memory.price}', '${memory.image}', `
-                +` '${memory.link}', NOW(), '${memory.store_name}')`
-            );
-
-            db.closeConnection();      
-
-            return result;            
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    }    
 
     async getAllProcessors(){
         try {
@@ -165,21 +90,14 @@ export class Service {
         }
     }
 
-    async insertProcessors(processor){
+    async getIdData(){
         try {
             let db = new DBConnection();
             db.openConnection();
             
             var result = await db.execute(
-                `INSERT INTO Memory`
-                +`  (id_data, name,`
-                +`   price, img_path,`
-                +`    link, execution_date,`
-                +`    store_name) `
-                +`VALUES `
-                +`('${processor.id_data}', '${processor.name}',`
-                +` '${processor.price}', '${processor.image}', `
-                +` '${processor.link}', NOW(), '${processor.store_name}')`
+                `Select Max(id_data) as id_data from GraphicCard `
+                +`where store_name like 'Kabum'`
             );
 
             db.closeConnection();      
@@ -190,14 +108,39 @@ export class Service {
         }
     }
 
-    async getIdData(){
+    async insertProduct(product, productCode){
         try {
             let db = new DBConnection();
             db.openConnection();
+
+            productTableName = ""
+            switch (productCode) {
+                case 0:
+                    productTableName = "GraphicCard"
+                    break;
+                case 1:
+                    productTableName = "Processor"
+                    break;
+                case 2:
+                    productTableName = "MotherBoard"
+                    break;
+                case 3:
+                    productTableName = "Memory"
+                    break;
+                default:
+                    break;
+            }
             
             var result = await db.execute(
-                `Select Max(id_data) as id_data from GraphicCard `
-                +`where store_name like 'Kabum'`
+                `INSERT INTO ` + productTableName
+                +`  (id_data, name,`
+                +`   price, img_path,`
+                +`    link, execution_date,`
+                +`    store_name) `
+                +`VALUES `
+                +`('${memory.id_data}', '${memory.name}',`
+                +` '${memory.price}', '${memory.image}', `
+                +` '${memory.link}', NOW(), '${memory.store_name}')`
             );
 
             db.closeConnection();      

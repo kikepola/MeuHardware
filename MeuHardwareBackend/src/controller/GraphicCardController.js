@@ -16,5 +16,13 @@ exports.get = async (req, res, next) => {
 };
 
 exports.post = async (req, res, next) => {
-    console.log(req.body)
+
+    let service = new Service();
+    
+    await service.insertProduct(req.body, 0).then(() => {
+        res.status(200).send(result);
+    }).catch((error) => {
+        res.status(500).send({ message: error});
+    })
+        
 };

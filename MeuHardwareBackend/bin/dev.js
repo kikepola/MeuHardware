@@ -1,17 +1,21 @@
 const Kabum = require('../rpa_scripts/kabum');
 const Pichau = require('../rpa_scripts/pichau');
+const Terabyte = require('../rpa_scripts/terabyte');
 
 require('dotenv/config')
 
-require('./../rpa_scripts/kabum');
-require('./../rpa_scripts/pichau');
 
 const kabum = new Kabum();
-kabum.run('https://www.kabum.com.br/hardware/processadores')
+kabum.run(
+    'https://www.kabum.com.br/hardware/processadores',
+    'http://localhost:8080/processor'
+)
 
-const pichau = new Pichau()
-pichau.run('https://www.pichau.com.br/hardware/placa-m-e') 
+//const pichau = new Pichau()
+//pichau.run('https://www.pichau.com.br/hardware/placa-m-e') 
 
+//const terabyte = new Terabyte()
+//terabyte.run('https://www.terabyteshop.com.br/hardware/placas-mae') 
 
 //require('./../rpa_scripts/gpu_kabum')
 //require('./../rpa_scripts/gpu_pichau')
