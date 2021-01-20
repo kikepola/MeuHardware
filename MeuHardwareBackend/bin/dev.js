@@ -102,9 +102,9 @@ const run = async () => {
         console.log(error)
     })
 
-    //runKabum(id_data)
-    //runPichau(id_data)
-    runTerabyte(id_data)
+    await runKabum(id_data)
+    await runPichau(id_data)
+    await runTerabyte(id_data)
 }
 
 run()

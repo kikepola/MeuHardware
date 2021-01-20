@@ -20,75 +20,49 @@ module.exports = class Kabum{
       const page = await browser.newPage();
       await page.goto(storeUrl + '?pagina=1');
 
-      var hrefs = [];
       var i = 1;
       var productsAvailable = await page.evaluate(() => {
          return document.getElementsByClassName("sc-fznZeY jLtPVV")[0] == undefined
       })
 
       while ( productsAvailable ){
-         const pageHrefs = await page.evaluate(() => {
-            var link_list = [];
+         const products = await page.evaluate(() => {
+            var products = [];
             var elements = document.getElementById("listagem-produtos")
             
-            Array.from(elements.getElementsByTagName("a")).forEach((element) => {
-               link_list.push(element.href);
-            })               
-            
-            return {
-               elements: link_list,      
-            };
-         });
-
-         var resultList = await pageHrefs
-         for(var result in resultList.elements){
-            hrefs.push(resultList.elements[result])
-         }
-
-         await page.goto(storeUrl + '?pagina=' + i)      
-         i++
-
-         productsAvailable = await page.evaluate(() => {
-            return document.getElementsByClassName("sc-fznZeY jLtPVV")[0] == undefined
-         })
-      }
-
-      console.log("Antes: " + hrefs.length)
-      hrefs = await this.listFilter(hrefs)
-      console.log("Depois: " + hrefs.length)
-
-      for(var index in hrefs){
-         console.log(hrefs[index])
-         await page.goto(hrefs[index])
-         try {
-            const pageValues = await page.evaluate(() => {      
-
-               var price = ""         
-               try {
-                  price = document.getElementsByClassName("preco_desconto_avista-cm")[0].innerText.replace("R$", "")
-               } catch (error) {
-                  price = document.getElementsByClassName("preco_desconto")[0].getElementsByTagName("strong")[0].innerText.replace("R$", "")
-               }
-
+            Array.from(elements.getElementsByClassName("sc-fzqARJ eITELq")).forEach((element) => {               
+               var price = element.getElementsByClassName("sc-fznWqX qatGF")[0].innerText
+               
                price = price.replace(".", "")
                price = price.replace(",", ".")
+               price = price.replace("R$ ", "")
+               
+               products.push({
+                  name: element.getElementsByClassName("sc-fzoLsD gnrNhT item-nome")[0].innerText,
+                  image: element.getElementsByTagName("img")[0].src,
+                  price: price,
+                  link: element.getElementsByTagName("a")[0].href,
+               })
+            })               
+            
+            return products
+         });
 
-               return {
-                  name: document.getElementsByClassName("titulo_det")[0].innerText, 
-                  image: document.getElementsByClassName("imagem_produto_descricao")[0].src,
-                  price: price.replace("R$", "")                 
-               };
-            });
+         var resultList = await products
+         for(var index in resultList){
+
+            console.log(id_data)
 
             var productData = {
                id_data: id_data,
-               name: pageValues.name,
-               image: pageValues.image,
-               price: pageValues.price,
-               link: hrefs[index],
+               name: resultList[index].name,
+               image: resultList[index].image,
+               price: resultList[index].price,
+               link: resultList[index].link,
                store_name: "Kabum",
             }
-
+            console.log(productData)
+            
             await fetch(productUrl, {
                method: 'POST',
                headers: {
@@ -99,10 +73,13 @@ module.exports = class Kabum{
             }).then(() => console.log("OK!"))
             .catch((error) => console.log(error))
 
-         } catch (error) {
-            console.log(error)
          }
-         
+         await page.goto(storeUrl + '?pagina=' + i)      
+         i++
+
+         productsAvailable = await page.evaluate(() => {
+            return document.getElementsByClassName("sc-fznZeY jLtPVV")[0] == undefined
+         })
       }
       
       await browser.close();
