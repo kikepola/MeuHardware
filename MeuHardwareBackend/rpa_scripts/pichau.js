@@ -27,22 +27,55 @@ module.exports = class Pichau{
       })
 
       while ( productsAvailable ){
-         const pageHrefs = await page.evaluate(() => {
-            var link_list = [];
-            var elements = document.getElementsByClassName("products wrapper grid products-grid")[0]
+         const productsList = await page.evaluate(() => {
+            var products = [];
+            var elements = document.getElementsByClassName("products wrapper grid products-grid")[0].getElementsByClassName("item product product-item")
             
-            Array.from(elements.getElementsByTagName("a")).forEach((element) => {
-               link_list.push(element.href);
+            Array.from(elements).forEach((element) => {
+               var price = element.getElementsByClassName("price-boleto")[0].getElementsByTagName("span")[0].innerText;
+               price = price.replace(".", "")
+               price = price.replace(",", ".")
+               price = price.replace("à vista R$", "")
+
+               products.push(
+                  {
+                     name: element.getElementsByTagName("a")[1].innerText,
+                     image: element.getElementsByTagName("img")[0].src,
+                     price: price,
+                     link: element.getElementsByTagName("a")[0].href,                     
+                  }
+               );
             })               
             
-            return {
-               elements: link_list,      
-            };
+            return products;
          });
 
-         var resultList = await pageHrefs
-         for(var result in resultList.elements){
-            hrefs.push(resultList.elements[result])
+         var resultList = await productsList
+
+         for(var result in resultList){
+            var pageValues = resultList[result]
+
+            var productData = {
+               id_data: id_data,
+               name: pageValues.name,
+               image: pageValues.image,
+               price: pageValues.price,
+               link: pageValues.link,
+               store_name: "Pichau",
+            }
+
+            console.log(productData)
+            
+            await fetch(productUrl, {
+               method: 'POST',
+               headers: {
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+               },
+               body: JSON.stringify(productData)
+            }).then(() => console.log("OK!"))
+            .catch((error) => console.log(error))
+
          }
 
          await page.goto(storeUrl + '?p=' + i)      
@@ -53,56 +86,6 @@ module.exports = class Pichau{
          })
       }
 
-      console.log("Antes: " + hrefs.length)
-      hrefs = await this.listFilter(hrefs)
-      console.log("Depois: " + hrefs.length)
-
-      for(var index in hrefs){
-         await page.goto(hrefs[index])
-         try {
-            const pageValues = await page.evaluate(() => {      
-
-               var price = document.getElementsByClassName("price-boleto")[0]
-                  .getElementsByTagName("span")[0].innerText.replace("à vista R$", "")
-
-               price = price.replace(".", "")
-               price = price.replace(",", ".")
-      
-               return {
-                  name: document.getElementsByClassName("product title")[0].getElementsByTagName("h1")[0].innerText, 
-                  image: document.getElementsByClassName("fotorama__img")[0].src,
-                  price: price               
-               };
-
-            });
-            console.log(pageValues)
-            
-            var productData = {
-               id_data: id_data,
-               name: pageValues.name,
-               image: pageValues.image,
-               price: pageValues.price,
-               link: hrefs[index],
-               store_name: "Pichau",
-            }
-
-            await fetch(productUrl, {
-               method: 'POST',
-               headers: {
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-               },
-               body: JSON.stringify(productData)
-            }).then(() => console.log("OK!"))
-            .catch((error) => console.log(error))
-            
-
-         } catch (error) {
-            console.log(error)
-         }      
-      }
-      
       await browser.close();
-      connection.end();
    }
 }
