@@ -5,4 +5,6 @@ const controller = require('../controller/ProcessorController')
 
 router.get('/processor', controller.get);
 
+router.post('/processor', controller.post);
+
 module.exports = router;
