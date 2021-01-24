@@ -22,11 +22,7 @@ module.exports = class Pichau{
 
       var hrefs = [];
       var i = 1;
-      var productsAvailable = await page.evaluate(() => {
-         return document.getElementsByClassName("stock unavailable")[0] == undefined
-      })      
-
-      console.log(productsAvailable)
+      var productsAvailable = true;
 
       while ( productsAvailable ){
          const productsList = await page.evaluate(() => {
@@ -34,28 +30,28 @@ module.exports = class Pichau{
             var elements = document.getElementsByClassName("products wrapper grid products-grid")[0].getElementsByClassName("item product product-item")
 
             Array.from(elements).forEach((element) => {
-               console.log(element)
+               if(element.getElementsByClassName("stock unavailable")[0] == undefined){
+                  var price = element.getElementsByClassName("price-boleto")[0].getElementsByTagName("span")[0].innerText;
+                  price = price.replace(".", "")
+                  price = price.replace(",", ".")
+                  price = price.replace("à vista R$", "")
 
-               var price = element.getElementsByClassName("price-boleto")[0].getElementsByTagName("span")[0].innerText;
-               price = price.replace(".", "")
-               price = price.replace(",", ".")
-               price = price.replace("à vista R$", "")
-
-               products.push(
-                  {
-                     name: element.getElementsByTagName("a")[1].innerText,
-                     image: element.getElementsByTagName("img")[0].src,
-                     price: price,
-                     link: element.getElementsByTagName("a")[0].href,                     
-                  }
-               );
+                  products.push(
+                     {
+                        name: element.getElementsByTagName("a")[1].innerText,
+                        image: element.getElementsByTagName("img")[0].src,
+                        price: price,
+                        link: element.getElementsByTagName("a")[0].href,                     
+                     }
+                  );
+               }               
             })               
             
             return products;
          });
 
          var resultList = await productsList
-
+         console.log(resultList)
          for(var result in resultList){
             var pageValues = resultList[result]
 
@@ -67,8 +63,6 @@ module.exports = class Pichau{
                link: pageValues.link,
                store_name: "Pichau",
             }
-
-            console.log(productData)
             
             await fetch(productUrl, {
                method: 'POST',

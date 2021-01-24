@@ -8,12 +8,7 @@ export class Service {
             db.openConnection();
             
             var result = await db.execute(
-                'SELECT gc.*'
-                +' FROM GraphicCard as gc'
-                +' INNER JOIN'
-                +'     (SELECT MAX(id_data) AS max'
-                +'     FROM GraphicCard) maxVal '
-                +' ON gc.id_data = maxVal.max '
+                'SELECT * FROM GraphicCardView'
             );
 
             db.closeConnection();      
@@ -30,12 +25,7 @@ export class Service {
             db.openConnection();
             
             var result = await db.execute(
-                'SELECT gc.*'
-                +' FROM MotherBoard as gc'
-                +' INNER JOIN'
-                +'     (SELECT MAX(id_data) AS max'
-                +'     FROM MotherBoard) maxVal '
-                +' ON gc.id_data = maxVal.max '
+                'SELECT * FROM MotherBoardView'
             );
 
             db.closeConnection();      
@@ -52,12 +42,7 @@ export class Service {
             db.openConnection();
             
             var result = await db.execute(
-                'SELECT gc.*'
-                +' FROM Memory as gc'
-                +' INNER JOIN'
-                +'     (SELECT MAX(id_data) AS max'
-                +'     FROM Memory) maxVal '
-                +' ON gc.id_data = maxVal.max '
+                'SELECT * FROM MemoryView'
             );
 
             db.closeConnection();      
@@ -74,12 +59,7 @@ export class Service {
             db.openConnection();
             
             var result = await db.execute(
-                'SELECT gc.*'
-                +' FROM Processor as gc'
-                +' INNER JOIN'
-                +'     (SELECT MAX(id_data) AS max'
-                +'     FROM Processor) maxVal '
-                +' ON gc.id_data = maxVal.max '
+                'SELECT * FROM ProcessorView'
             );
 
             db.closeConnection();      

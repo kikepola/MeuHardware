@@ -36,7 +36,7 @@ const runKabum = async (id_data) => {
 
 const runPichau = async (id_data) => {
     const pichau = new Pichau()
-    /*
+
     await pichau.run(
         'https://www.pichau.com.br/hardware/placa-m-e', 
         baseUrl + '/motherboard',
@@ -48,19 +48,19 @@ const runPichau = async (id_data) => {
         baseUrl + '/processor',
         id_data
     ) 
-    */
+
     await pichau.run(
         'https://www.pichau.com.br/hardware/placa-de-video', 
         baseUrl + '/graphiccard',
         id_data
     ) 
-    /*
+
     await pichau.run(
         'https://www.pichau.com.br/hardware/memorias', 
         baseUrl + '/memory',
         id_data
     ) 
-    */
+
 }
 
 const runTerabyte = async (id_data) => {
@@ -103,9 +103,9 @@ const run = async () => {
         console.log(error)
     })
 
-    //runKabum(id_data)
+    runKabum(id_data)
     runPichau(id_data)
-    //runTerabyte(id_data)
+    runTerabyte(id_data)
 }
 
 run()
