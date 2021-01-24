@@ -19,8 +19,8 @@
 }
 
 #Product:hover{
-  width: 350px;
-  height: 450px;
+  width: 270px;
+  height: 370px;
   margin-top: -20px;
 
   background-image: linear-gradient(rgb(211, 211, 211), white), radial-gradient(circle at top left, var(--mh_orange), var(--mh_gray));

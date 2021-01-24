@@ -63,6 +63,7 @@
   text-align: center;
   font-weight: bold;
   padding-top: 5px;
+  font-size: 15pt;
 }
 
 @media only screen and (max-width: 700px) {
@@ -81,5 +82,9 @@
 
   .ProductContent{
     grid-template-columns: 1fr 2fr;
+  }
+
+  .ProductStore{
+    font-size: 10pt;
   }
 }
