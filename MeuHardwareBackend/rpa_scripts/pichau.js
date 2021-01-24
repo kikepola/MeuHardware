@@ -24,14 +24,18 @@ module.exports = class Pichau{
       var i = 1;
       var productsAvailable = await page.evaluate(() => {
          return document.getElementsByClassName("stock unavailable")[0] == undefined
-      })
+      })      
+
+      console.log(productsAvailable)
 
       while ( productsAvailable ){
          const productsList = await page.evaluate(() => {
             var products = [];
             var elements = document.getElementsByClassName("products wrapper grid products-grid")[0].getElementsByClassName("item product product-item")
-            
+
             Array.from(elements).forEach((element) => {
+               console.log(element)
+
                var price = element.getElementsByClassName("price-boleto")[0].getElementsByTagName("span")[0].innerText;
                price = price.replace(".", "")
                price = price.replace(",", ".")
